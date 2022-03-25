@@ -1,0 +1,41 @@
+.Home {
+    margin: auto;
+}
+.container {
+    width: 50%;
+    margin: auto;
+}
+.container-inline {
+    display: inline-flex;
+}
+
+
+.applyButton {
+    float: right;
+    margin-left: 230px;
+    margin-bottom: 10px;
+    padding-top: 5;
+    padding-bottom: 5; 
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+

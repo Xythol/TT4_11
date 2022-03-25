@@ -1,5 +1,6 @@
 import { useState } from 'react';
- 
+import { Link } from 'react-router-dom';
+
 export default function Form() {
  
   // States for registration
@@ -56,6 +57,7 @@ export default function Form() {
     } else {
       setSubmitted(true);
       setError(false);
+      <Link to="/login" />
     }
   };
  
