@@ -10,6 +10,8 @@ var indexRouter = require('./routes/index');
 // var registerRouter = require('./routes/register');
 // var shoppingRouter = require('./routes/shopping');
 var onboardingRouter = require('./routes/services/onboarding_service');
+var loanhistoryRouter = require('./routes/services/loanhistory_service');
+
 
 
 var loanHistoryRouter = require('./routes/services/loanhistory');
@@ -34,6 +36,7 @@ app.use('/', indexRouter);
 // app.use('/register', registerRouter);
 // app.use('/shopping', shoppingRouter);
 app.use('/onboarding', onboardingRouter);
+app.use('/loanhistory', loanhistoryRouter);
 
 app.use('/balance', balanceRouter);
 app.use('/loanhistory', loanHistoryRouter);
