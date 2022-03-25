@@ -10,7 +10,7 @@ const login = async (req, res, next) => {
     if (rows.length > 0) {
         const salt = rows[0].Salt;
         if (pass === rows[0].CustomerPasswordHashed) {
-            const jwt = auth.encode_jwt(rows[0].CustomerId);
+            const jwt = auth.encode_jwt({cust_id: rows[0].CustomerId});
             return res.status(200).json({access_token: jwt});
         } else {
             return res.status(401).json({error: "Unauthorised"});

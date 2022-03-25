@@ -11,22 +11,21 @@ const decode_jwt = (token) => {
     return jwt.verify(token, JWT_SECRET);
 };
 
-const auth_jwt = (req, res, next) => {
+const auth_jwt = async (req, res, next) => {
     const access_token = req.headers.access_token;
-    const {username} = decode_jwt(access_token);
-    connection.query('SELECT username FROM customer WHERE username=?', [username], (err, rows, fields) => {
-        if (err) throw err;
-        if (rows.length > 0) {
-            const verify_username = rows[0].username;
-            if (verify_username === username) {
-                next();
-            } else {
-                return res.json({error: "This should not be here"});
-            }
+    const {cust_id} = decode_jwt(access_token);
+    const con = await connection();
+    const [rows, fields] = await con.execute('SELECT CustomerId FROM customer WHERE CustomerId=?', [cust_id]);
+    if (rows.length > 0) {
+        const verify_cust_id = rows[0].CustomerId;
+        if (verify_cust_id === cust_id) {
+            next();
         } else {
-            return res.json({error: "Unauthorized"})
+            res.status(400).json({error: "You should not be able to reach here"});
         }
-    });
+    } else {
+        return res.json({error: "Unauthorized"})
+    }
 };
 
 module.exports = {
