@@ -120,3 +120,15 @@ INSERT INTO `payment` (`PaymentId`, `LoanId`, `payment_date`, `payment_amount`) 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+CREATE TABLE `customerlogin` (
+  `CustomerId` int NOT NULL,
+  `CustomerUsername` varchar(50) NOT NULL,
+  `CustomerPasswordHashed` varchar(500) NOT NULL,
+  `Salt` varchar(50) NOT NULL,
+  PRIMARY KEY (`CustomerUsername`),
+  UNIQUE KEY `CustomerId_UNIQUE` (`CustomerId`),
+  UNIQUE KEY `CustomerUsername_UNIQUE` (`CustomerUsername`),
+  UNIQUE KEY `CustomerPasswordHashed_UNIQUE` (`CustomerPasswordHashed`),
+  UNIQUE KEY `Salt_UNIQUE` (`Salt`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
