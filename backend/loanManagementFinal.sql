@@ -127,7 +127,7 @@ CREATE TABLE `customerlogin` (
   `CustomerPasswordHashed` varchar(500) NOT NULL,
   `Salt` varchar(50) NOT NULL,
   PRIMARY KEY (`CustomerUsername`),
-  UNIQUE KEY `CustomerId_UNIQUE` (`CustomerId`),
+  UNIQUE KEY `CustomerId_UNIQUE` (`CustomerId`), FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`CustomerId`),
   UNIQUE KEY `CustomerUsername_UNIQUE` (`CustomerUsername`),
   UNIQUE KEY `CustomerPasswordHashed_UNIQUE` (`CustomerPasswordHashed`),
   UNIQUE KEY `Salt_UNIQUE` (`Salt`)
