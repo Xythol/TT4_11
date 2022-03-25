@@ -11,11 +11,7 @@ var indexRouter = require('./routes/index');
 // var shoppingRouter = require('./routes/shopping');
 var onboardingRouter = require('./routes/services/onboarding_service');
 var loanhistoryRouter = require('./routes/services/loanhistory_service');
-// var testRouter = require('./utils/populate');
-
-
-
-var loanHistoryRouter = require('./routes/services/loanhistory');
+var loanpaymentRouter = require('./routes/services/loanpayment_service');
 var balanceRouter = require('./routes/services/balance');
 
 
@@ -38,10 +34,8 @@ app.use('/', indexRouter);
 // app.use('/shopping', shoppingRouter);
 app.use('/onboarding', onboardingRouter);
 app.use('/loanhistory', loanhistoryRouter);
-// app.use('/test', testRouter);
-
+app.use('/loanpayment', loanpaymentRouter);
 app.use('/balance', balanceRouter);
-app.use('/loanhistory', loanHistoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
