@@ -1,44 +1,61 @@
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import "./Login.css";
+import { Form } from 'react-bootstrap-validation'
+import React, {Component} from 'react';
+export default class App extends Component {
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
+  constructor(props) {
+    super(props)
+    this.state = {
+      showModal: false,
+      email: '',
+      password: ''
+    }
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+  _handleValidSubmit(values) {}
+  _handleInvalidSubmit(errors, values) {}
 
-  return (
-    <div className="Login">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            autoFocus
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group size="lg" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Button block size="lg" type="submit" disabled={!validateForm()}>
-          Login
-        </Button>
-      </Form>
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <div className="account">
+          <div className="container">
+            <div className="page-title">Login</div>
+            <div className="page-desc">Email used at sign up</div>
+            <Form
+              onValidSubmit={this._handleValidSubmit.bind(this)}
+              onInvalidSubmit={this._handleInvalidSubmit.bind(this)}>
+              <ValidatedInput
+                type="text"
+                label="Email"
+                name="email"
+                validate="required,isEmail"
+                errorHelp={{
+                  required: "Please enter your e-mail",
+                  isEmail: "Email is invalid"
+                }}
+              />
+
+              <ValidatedInput
+                type="password"
+                label="Password"
+                name="password"
+                validate="required,isLength:6:60"
+                errorHelp={{
+                  required: "Please specify a password",
+                  isEmail: "Password must be at least 6 characters"
+                }}
+              />
+
+              <ButtonInput
+                type="submit"
+                bsSize="large"
+                bsStyle="primary"
+                value="LOGIN"
+              />
+            </Form>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
