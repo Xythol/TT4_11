@@ -8,7 +8,6 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var registerRouter = require('./routes/register');
-var loginRouter = require('./routes/services/login');
 var loanHistoryRouter = require('./routes/services/loanhistory');
 var shoppingRouter = require('./routes/shopping');
 
@@ -28,7 +27,6 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/register', registerRouter);
-app.use('/login', loginRouter);
 app.use('/loanhistory', loanHistoryRouter);
 app.use('/shopping', shoppingRouter);
 
