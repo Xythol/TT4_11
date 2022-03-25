@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index');
 var onboardingRouter = require('./routes/services/onboarding_service');
 var loanhistoryRouter = require('./routes/services/loanhistory_service');
 var loanpaymentRouter = require('./routes/services/loanpayment_service');
+var balanceRouter = require('./routes/services/balance');
 
 
 var app = express();
@@ -34,6 +35,7 @@ app.use('/', indexRouter);
 app.use('/onboarding', onboardingRouter);
 app.use('/loanhistory', loanhistoryRouter);
 app.use('/loanpayment', loanpaymentRouter);
+app.use('/balance', balanceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
