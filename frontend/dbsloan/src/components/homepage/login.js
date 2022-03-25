@@ -1,15 +1,41 @@
 import axios from "axios";
-import { Component } from "react";
+import { useState } from 'react';
 
-export default class login extends Component {
+export default function Form() {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-        }
-    }
+    const [Name, setName] = useState('');
+    const [Password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
 
-    render() {
+    const handleName = (e) => {
+        setName(e.target.value);
+      };
+      const handlePassword = (e) => {
+        setPassword(e.target.value);
+      };
+
+      const handleSubmit = (e) => {
+     
+          let data = {
+            username: Name, 
+            password: Password, 
+
+          }; 
+          console.log(data); 
+          axios.post('http://localhost:8080/onboarding/login', data, { headers: { "Content-Type": "application/json" } })
+          .then(res => {
+            console.log(res); 
+              if(res.data.status == "Success")
+              { 
+                console.log("Successfully login"); 
+              }
+          })
+          .catch(err => {
+              console.log(err)
+              console.log(data)
+          })
+    
+      };
         return (
             <div className="Login">
                 <form>
@@ -17,19 +43,23 @@ export default class login extends Component {
 
                     <div className="form-group">
                         <label>Email</label>
-                        <input type="email" className="form-control" placeholder="Email"
+                        <input type="email"   onChange={handleName}  value={Name} className="form-control" placeholder="Email"
                              />
                     </div>
 
                     <div className="form-group">
                         <label>Password</label>
-                        <input type="password" className="form-control" placeholder="Password"
+                        <input type="password" onChange={handlePassword}  value={Password}  className="form-control" placeholder="Password"
                             />
                     </div>
 
-                    <button className="btn btn-primary btn-block"> login</button>
+                    <div className="form-group">
+                        <label>{message}</label>
+                    </div>
+
+
+                    <button onClick={handleSubmit} className="btn btn-primary btn-block"> login</button>
                 </form>
             </div>
         )
     }
-}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
 export default function Form() {
  
@@ -57,7 +58,29 @@ export default function Form() {
     } else {
       setSubmitted(true);
       setError(false);
-      <Link to="/login" />
+      // <Link to="/login" />
+  
+      let data = {
+        username: Email, 
+        password: Password, 
+        name: Name, 
+        phone: Phone, 
+        address: Address
+      }; 
+      console.log(data); 
+      axios.post('http://localhost:8080/onboarding/register', data, { headers: { "Content-Type": "application/json" } })
+      .then(res => {
+        
+          if(res.data.status == "Success")
+          {
+            console.log("Successfully reigster"); 
+          }
+      })
+      .catch(err => {
+          console.log(err)
+          console.log(data)
+      })
+
     }
   };
  

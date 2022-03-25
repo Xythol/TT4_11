@@ -1,6 +1,7 @@
 import { Component } from "react";
 import './home.css';
 // import { Link } from "react-router-dom"
+import axios from "axios";
 
 export default class Home extends Component {
 
@@ -13,11 +14,20 @@ export default class Home extends Component {
     }
 
     applyLoan = (e) => {
-        console.log("clicked"); 
+        // console.log("clicked"); 
+        // call getLoan.js
    }
 
    componentDidMount() {
        // call api to get all data 
+       axios.get('http://localhost:8080/loanhistory/')
+            .then(response => {
+               console.log(response); 
+            })
+
+            .catch(function (error) {
+                console.log(error)
+            })
    }
 
     render() {
@@ -43,7 +53,7 @@ export default class Home extends Component {
                             <th>Loan Amount</th>
                             <th>Actions</th>
                         </tr>
-                        <tr>
+                        {/* <tr>
                             <td>Alfreds Futterkiste</td>
                             <td>Maria Anders</td>
                             <td>Germany</td>
@@ -72,7 +82,7 @@ export default class Home extends Component {
                             <td>Magazzini Alimentari Riuniti</td>
                             <td>Giovanni Rovelli</td>
                             <td>Italy</td>
-                        </tr>
+                        </tr> */}
                         </table>
                     </div>
 
