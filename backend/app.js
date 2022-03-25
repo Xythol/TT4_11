@@ -14,6 +14,11 @@ var loanhistoryRouter = require('./routes/services/loanhistory_service');
 // var testRouter = require('./utils/populate');
 
 
+
+var loanHistoryRouter = require('./routes/services/loanhistory');
+var balanceRouter = require('./routes/services/balance');
+
+
 var app = express();
 
 // view engine setup
@@ -34,6 +39,9 @@ app.use('/', indexRouter);
 app.use('/onboarding', onboardingRouter);
 app.use('/loanhistory', loanhistoryRouter);
 // app.use('/test', testRouter);
+
+app.use('/balance', balanceRouter);
+app.use('/loanhistory', loanHistoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
