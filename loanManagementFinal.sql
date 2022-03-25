@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
   PRIMARY KEY (`CustomerId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
+
 -- Dumping data for table loan_management.customer: ~10 rows (approximately)
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`CustomerId`, `customer_name`, `customer_phone`, `customer_address`, `balance`) VALUES
@@ -119,3 +120,15 @@ INSERT INTO `payment` (`PaymentId`, `LoanId`, `payment_date`, `payment_amount`) 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+CREATE TABLE IF NOT EXISTS `customerlogin` (
+  `CustomerId` int NOT NULL,
+  `CustomerUsername` varchar(50) NOT NULL,
+  `CustomerPasswordHashed` varchar(500) NOT NULL,
+  `Salt` varchar(50) NOT NULL,
+  PRIMARY KEY (`CustomerUsername`),
+  UNIQUE KEY `CustomerId_UNIQUE` (`CustomerId`), FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`CustomerId`),
+  UNIQUE KEY `CustomerUsername_UNIQUE` (`CustomerUsername`),
+  UNIQUE KEY `CustomerPasswordHashed_UNIQUE` (`CustomerPasswordHashed`),
+  UNIQUE KEY `Salt_UNIQUE` (`Salt`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

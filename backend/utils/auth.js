@@ -13,12 +13,12 @@ const decode_jwt = (token) => {
 
 const auth_jwt = (req, res, next) => {
     const access_token = req.headers.access_token;
-    const {username} = decode_jwt(access_token);
-    connection.query('SELECT username FROM customer WHERE username=?', [username], (err, rows, fields) => {
+    const {CustomerId} = decode_jwt(access_token);
+    connection.query('SELECT CustomerId FROM customer WHERE CustomerId=?', [CustomerId], (err, rows, fields) => {
         if (err) throw err;
         if (rows.length > 0) {
-            const verify_username = rows[0].username;
-            if (verify_username === username) {
+            const verify_CustomerId = rows[0].CustomerId;
+            if (verify_CustomerId === CustomerId) {
                 next();
             } else {
                 return res.json({error: "This should not be here"});
