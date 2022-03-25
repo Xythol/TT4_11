@@ -7,7 +7,6 @@ var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var sqlRouter = require('./routes/sql');
 var registerRouter = require('./routes/register');
 var loginRouter = require('./routes/login');
 var shoppingRouter = require('./routes/shopping');
@@ -27,7 +26,6 @@ app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/sql', sqlRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/shopping', shoppingRouter);

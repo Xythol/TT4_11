@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'paultho',
-    database: 'prac'
+    database: 'loan_management'
 });
 
 let solution = 0;
