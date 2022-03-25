@@ -11,6 +11,11 @@ var indexRouter = require('./routes/index');
 // var shoppingRouter = require('./routes/shopping');
 var onboardingRouter = require('./routes/services/onboarding_service');
 
+
+var loanHistoryRouter = require('./routes/services/loanhistory');
+var balanceRouter = require('./routes/services/balance');
+
+
 var app = express();
 
 // view engine setup
@@ -29,6 +34,9 @@ app.use('/', indexRouter);
 // app.use('/register', registerRouter);
 // app.use('/shopping', shoppingRouter);
 app.use('/onboarding', onboardingRouter);
+
+app.use('/balance', balanceRouter);
+app.use('/loanhistory', loanHistoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
